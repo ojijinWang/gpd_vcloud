@@ -1,4 +1,4 @@
-# gpd_vcloud
+### gpd_vcloud
 Remove dangerous grasp: VCloud(visible point cloud) filter implemented with "Grasp Pose Detection in Point Clouds"
 
 * [Author's website](https://www.oit.ac.jp/elc/~matsunolab/index.html)
@@ -33,28 +33,32 @@ sudo apt-get install --no-install-recommends libboost-all-dev
 sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-dev
 
-### build a direct of ~/software/caffe
+# build a direct of ~/software/caffe
 mkdir -p ~/software/caffe
 cd ~/software/caffe
 git clone https://github.com/BVLC/caffe.git
 
-### copy the example CMake config
+# copy the example CMake config
 cd caffe
 cp Makefile.config.example Makefile.config
 
-### change CMake config
+# change CMake config
 gedit Makefile.config
-### from
-CPU_ONLY := 1
-OPENCV_VERSION := 3
-INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
-LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib 
-### to
-CPU_ONLY := 1
-OPENCV_VERSION := 3
-INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
-LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial
-### beacuse the computing speed mkl > openlas >atlas, and caffe take atlas at default
+from
+   ```
+    CPU_ONLY := 1
+    OPENCV_VERSION := 3
+    INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
+    LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib
+   ```
+to
+   ```
+    CPU_ONLY := 1
+    OPENCV_VERSION := 3
+    INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
+    LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial
+   ```
+beacuse the computing speed mkl > openlas >atlas, and caffe take atlas at default
 
 mkdir ./build
 cd ./build
@@ -65,14 +69,14 @@ make runtest -j16
 
 
 # 2.3. install gpd
-### copy the gpd folder into ~/software
+# copy the gpd folder into ~/software
 mkdir build && cd build
 cmake ..
 make
 sudo make install
 
 # 4. Build the package in ROS
-### copy the gpd_vcloud ~catkin_ws/src and catkin_make/build
+# copy the gpd_vcloud ~catkin_ws/src and catkin_make/build
 
 
 ## 3) References
