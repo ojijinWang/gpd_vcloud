@@ -1,0 +1,69 @@
+<launch>
+	<node name="gpd_vcloud_node" pkg="gpd_vcloud" type="gpd_vcloud_node" output="screen" respawn="false">
+
+		<!-- Plotting parameters -->
+		<param name="plot_normals" value="false" />
+ 		<param name="plot_samples" value="false" />    
+		<param name="plot_candidates" value="false" />
+		<param name="plot_filtered_grasps" value="false" />
+		<param name="plot_valid_grasps" value="false" />
+		<param name="plot_clusters" value="false" />
+		<param name="plot_selected_grasps" value="false" />
+
+		<!-- grasper parameters -->
+		<param name="finger_width"        value="0.01" />
+		<param name="hand_outer_diameter" value="0.09" />
+		<param name="hand_depth"          value="0.06" />
+		<param name="hand_height"         value="0.05" />
+		<param name="init_bite"           value="0.015" />
+	    
+		<!-- Preprocessing of point cloud -->
+		<param name="voxelize" value="false"/> <!-- Voxelize the point cloud -->
+		<param name="remove_outliers" value="false"/> <!-- Remove statistical outliers from the point cloud -->
+		<rosparam param="workspace"> [-5, 5, -5, 5, -5, 5] </rosparam> <!-- (x,y,z)-dimensions of the workspace -->
+
+		<!-- General parameters -->
+		<param name="num_samples" value="5000" /> <!-- The number of samples to draw from the point cloud -->
+		<param name="num_threads" value="16" /> <!-- The number of CPU threads to be used -->
+		<param name="gaussian_table_size" value="10000000" />    
+    
+		<!-- Parameters for local grasp candidate search -->
+		<param name="nn_radius" value="0.1" /> <!-- Radius for the point neighborhood search -->
+		<param name="num_orientations" value="16" /> <!-- Number of orientations to consider -->
+    
+		<!-- Filtering of grasp candidates --> 
+		<param name="filter_grasps" value="true" /> <!-- on workspace and robot gripper width -->
+		<param name="min_aperture" value="0.3" /> <!-- The minimum gripper width -->
+		<param name="max_aperture" value="1.2" /> <!-- The maximum gripper width -->
+		<rosparam param="workspace_grasps"> [-5, 5, -5, 5, -5, 5] </rosparam> <!-- (x,y,z)-dimensions of the workspace, should be smaller than <workspace> -->
+		<param name="filter_half_antipodal" value="false"/> <!-- on half antipodal -->
+    
+		<!-- Grasp image creation -->
+		<param name="create_image_batches" value="false" /> <!-- creates grasp images in batches (less memory usage) -->
+        
+		<!-- Clustering of grasps -->
+		<param name="min_inliers" value="1" /> <!-- min inliers in each cluster; set to 0 to avoid clustering -->
+    
+		<!-- Grasp selection -->
+		<param name="min_score_diff" value="0" /> <!-- Threshold to sort out grasps with low scores -->
+		<param name="num_selected" value="1000" /> <!-- The number of selected grasps (sorted by score) -->
+
+		<!-- Caffe Classfier -->
+		<param name="model_file" value="$(find avatar_gpd_fix)/caffe/3channels/lenet_3_channels.prototxt" />
+		<param name="trained_file" value="$(find avatar_gpd_fix)/caffe/3channels/bottles_boxes_cans_5xNeg.caffemodel" />
+    
+		<!-- Grasp Image Parameters -->
+		<param name="image_outer_diameter" value="0.12" /> 
+		<param name="image_depth" value="0.06" />
+		<param name="image_height" value="0.02" />
+		<param name="image_size" value="60" />  
+		<param name="image_num_channels" value="3" />  
+		<param name="use_gpu" value="false" /> 
+
+		<!-- Frames -->	
+		<param name="base_link_frame_id" value="base_link" /> 
+
+		<remap from="cloud_in" to="/camera_realsense/depth/color/points" /> 
+	</node>
+
+</launch>

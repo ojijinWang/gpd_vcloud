@@ -1,0 +1,32 @@
+<launch>
+	<!--camera position-->
+	<node pkg="tf" type="static_transform_publisher" name="camera_frame_broadcaster" args="0 0 0.2 0 0 0 base_link camera_realsense_link 30"/>
+
+	<group ns="camera_realsense">
+		<arg name="serial_no_hand"             default=""/>
+		<arg name="json_file_path_hand"        default=""/>
+		<arg name="camera_realsense"                default="camera_realsense"/>
+		<include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+			<arg name="serial_no"         value="$(arg serial_no_hand)"/>
+			<arg name="json_file_path"    value="$(arg json_file_path_hand)"/>
+			<arg name="depth_width"       value="848"/>
+			<arg name="depth_height"      value="480"/>
+			<arg name="depth_fps"         value="15"/>
+			<arg name="color_width"       value="848"/>
+			<arg name="color_height"      value="480"/>
+			<arg name="color_fps"         value="15"/>
+			<arg name="enable_depth"      value="true"/>
+			<arg name="enable_color"      value="true"/>
+			<arg name="enable_infra1"     value="false"/>
+			<arg name="enable_infra2"     value="false"/>
+			<arg name="enable_fisheye"    value="false"/>
+			<arg name="enable_pointcloud" value="true"/>
+			<arg name="pointcloud_texture_stream" default="RS2_STREAM_COLOR"/>
+			<arg name="enable_sync"       value="false"/>
+			<arg name="tf_prefix"         value="$(arg camera_realsense)"/>
+		</include>
+	</group>
+
+	<node name="rviz_m1n6s300"	pkg="rviz"	type="rviz"	args="-d $(find gpd_vcloud)/rviz/gpd_vcloud.rviz" output="screen"/>
+
+</launch>
