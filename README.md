@@ -17,21 +17,63 @@ The method is implemented with "Grasp Pose Detection in Point Cloud"
 
 ## 1) Requirements & Installation
 
+The following instructions have been tested on  **Ubuntu 16.04**, **Ubuntu 18.04** and  **Ubuntu 20.04** .
 
-
-## 2) Installation
-
-The following instructions have been tested on **Ubuntu 18.04**.
-
-1. Install ROS. the ros installs the requerements for you.
+# 1. Install ROS. the ros installs the requerements for you.
   [PCL 1.9 or newer]
   [Eigen 3.0 or newer]
   [OpenCV 3.3 or newer]
 
-3. Install gpd:
-   Since we use the old version of "Grasp Pose Detection in Point Clouds". please click [here] to install gpd
+# 2. Install gpd:
+   Since we use the old version of "Grasp Pose Detection in Point Clouds". please use the **gpd** uploaded in this resp.
 
-4. Build the package in ROS
+# 2.1. install caffe (CPU only: it is too troublesome to install GPU version) 
+sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
+sudo apt-get install --no-install-recommends libboost-all-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-dev
+
+### build a direct of ~/software/caffe
+mkdir -p ~/software/caffe
+cd ~/software/caffe
+git clone https://github.com/BVLC/caffe.git
+
+### copy the example CMake config
+cd caffe
+cp Makefile.config.example Makefile.config
+
+### change CMake config
+gedit Makefile.config
+### from
+CPU_ONLY := 1
+OPENCV_VERSION := 3
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib 
+### to
+CPU_ONLY := 1
+OPENCV_VERSION := 3
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial
+### beacuse the computing speed mkl > openlas >atlas, and caffe take atlas at default
+
+mkdir ./build
+cd ./build
+cmake ..
+make all -j16
+make install -j16
+make runtest -j16
+
+
+# 2.3. install gpd
+### copy the gpd folder into ~/software
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+
+# 4. Build the package in ROS
+### copy the gpd_vcloud ~catkin_ws/src and catkin_make/build
+
 
 ## 3) References
 
