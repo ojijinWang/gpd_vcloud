@@ -10,10 +10,10 @@ We provide a filter/method that includes incomplete point cloud information.
 The method can be used for many different scenes such as complex backgrounds. 
 To solve this problem, we introduce a novel technique named **visible point-cloud(V-cloud)** – generated using the point cloud and pose (position and orientation) information of the sensor(s) – that helps to eliminate unsafe grasp candidates quickly and efficiently.
 
-<img src="doc/Fig_visible_region_c3.png" height=170px/>
-<img src="doc/Fig_vcloud.png" height=170px/>
+<img src="doc/Fig_visible_region_c3.png" height=170px/><img src="doc/Fig_vcloud.png" height=170px/>
 
 we also define a value named **visibility** to determine the danger of grasp
+
 <img src="doc/Fig_light_cloud_3_c.png" height=170px/>
 
 Of course, the same effect can be achieved by using other filters. However, the method is more general and more efficient.
