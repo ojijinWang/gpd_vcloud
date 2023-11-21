@@ -90,6 +90,16 @@ copy the **gpd_vcloud** int ~catkin_ws/src.
 and catkin_make/build
 
 
+## 2). How to use
+you need a realsense camera to obtain the point cloud
+   ```
+    roslaunch gpd_vcloud step1_realsense_gets_pointcloud.launch
+   ```
+the gpd_cloud with active once as long as point cloud exists
+   ```
+     roslaunch gpd_vcloud step2_gpd_vcloud.launch
+   ```
+
 ## 3) References
 
 If you like this package and use it in your own work, please cite our journal
