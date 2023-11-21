@@ -1,7 +1,7 @@
 # gpd_vcloud
 Remove dangerous grasp: VCloud(visible point cloud) filter implemented with "Grasp Pose Detection in Point Clouds"
 
-* [Author's website]([(https://www.oit.ac.jp/elc/~matsunolab/index.html])
+* [Author's website]([https://www.oit.ac.jp/elc/~matsunolab/index.html])
 * [License](making)
 
 
