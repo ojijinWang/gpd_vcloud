@@ -1,4 +1,4 @@
-### gpd_vcloud
+# gpd_vcloud
 Remove dangerous grasp: VCloud(visible point cloud) filter implemented with "Grasp Pose Detection in Point Clouds"
 
 * [Author's website](https://www.oit.ac.jp/elc/~matsunolab/index.html)
@@ -19,31 +19,36 @@ The method is implemented with "Grasp Pose Detection in Point Cloud"
 
 The following instructions have been tested on  **Ubuntu 16.04**, **Ubuntu 18.04** and  **Ubuntu 20.04** .
 
-# 1. Install ROS. the ros installs the requerements for you.
+### 1. Install ROS. the ros installs the requerements for you.
   [PCL 1.9 or newer]
   [Eigen 3.0 or newer]
   [OpenCV 3.3 or newer]
 
-# 2. Install gpd:
+### 2. Install gpd:
    Since we use the old version of "Grasp Pose Detection in Point Clouds". please use the **gpd** uploaded in this resp.
 
-# 2.1. install caffe (CPU only: it is too troublesome to install GPU version) 
-sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
-sudo apt-get install --no-install-recommends libboost-all-dev
-sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
-sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-dev
+#### 2.1. install caffe (CPU only: it is too troublesome to install GPU version) 
+   ```
+    sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
+    sudo apt-get install --no-install-recommends libboost-all-dev
+    sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+    sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-dev
 
-# build a direct of ~/software/caffe
-mkdir -p ~/software/caffe
-cd ~/software/caffe
-git clone https://github.com/BVLC/caffe.git
+    mkdir -p ~/software/caffe
+    cd ~/software/caffe
+    git clone https://github.com/BVLC/caffe.git
+   ```
 
-# copy the example CMake config
-cd caffe
-cp Makefile.config.example Makefile.config
+copy the example CMake config
+   ```
+    cd caffe
+    cp Makefile.config.example Makefile.config
+   ```
 
-# change CMake config
-gedit Makefile.config
+change CMake config
+   ```
+    gedit Makefile.config
+   ```
 from
    ```
     CPU_ONLY := 1
@@ -60,23 +65,28 @@ to
    ```
 beacuse the computing speed mkl > openlas >atlas, and caffe take atlas at default
 
-mkdir ./build
-cd ./build
-cmake ..
-make all -j16
-make install -j16
-make runtest -j16
+install to the system
+   ```
+  mkdir ./build
+  cd ./build
+  cmake ..
+  make all -j16
+  make install -j16
+  make runtest -j16
+   ```
 
 
-# 2.3. install gpd
-# copy the gpd folder into ~/software
-mkdir build && cd build
-cmake ..
-make
-sudo make install
+#### 2.3. install gpd
+copy the gpd folder into ~/software
+   ```
+    mkdir build && cd build
+    cmake ..
+    make
+    sudo make install
+   ```
 
-# 4. Build the package in ROS
-# copy the gpd_vcloud ~catkin_ws/src and catkin_make/build
+### 3. Build the package in ROS
+copy the gpd_vcloud ~catkin_ws/src and catkin_make/build
 
 
 ## 3) References
