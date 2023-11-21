@@ -8,6 +8,9 @@ Remove dangerous grasp: VCloud(visible point cloud) filter implemented with "Gra
 Since the occlusion of the sensor is considered, we want to remove the partly invisible grasp from the sensor.
 We provide a filter/method that includes incomplete point cloud information.
 The method can be used for many different scenes such as complex backgrounds. 
+
+<img src="doc/Fig_exp.png" height=170px/>
+
 To solve this problem, we introduce a novel technique named **visible point-cloud(V-cloud)** – generated using the point cloud and pose (position and orientation) information of the sensor(s) – that helps to eliminate unsafe grasp candidates quickly and efficiently.
 
 <img src="doc/Fig_visible_region_c3.png" height=170px/><img src="doc/Fig_vcloud.png" height=170px/>
