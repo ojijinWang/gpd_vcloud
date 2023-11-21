@@ -15,22 +15,23 @@ Of crouse, the same affect can be achieved by using other filters. But I believe
 The method is implemented with "Grasp Pose Detection in Point Cloud"
 * A standalone filter can be used as well for any grasp detection method ([making])
 
-## 1) Requirements
+## 1) Requirements & Installation
 
-1. [PCL 1.9 or newer](http://pointclouds.org/)
-2. [Eigen 3.0 or newer](https://eigen.tuxfamily.org)
-3. [OpenCV 3.3 or newer](https://opencv.org)
+
 
 ## 2) Installation
 
 The following instructions have been tested on **Ubuntu 18.04**.
 
-1. Install ROS. the ros installs the requerements for you [PCL, Eigen, and OpenCV]
+1. Install ROS. the ros installs the requerements for you.
+  [PCL 1.9 or newer]
+  [Eigen 3.0 or newer]
+  [OpenCV 3.3 or newer]
 
-2. Install gpd:
+3. Install gpd:
    Since we use the old version of "Grasp Pose Detection in Point Clouds". please click [here] to install gpd
 
-3. Build the package in ROS
+4. Build the package in ROS
 
 ## 3) References
 
