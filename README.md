@@ -67,12 +67,12 @@ beacuse the computing speed mkl > openlas >atlas, and caffe take atlas at defaul
 
 install to the system
    ```
-  mkdir ./build
-  cd ./build
-  cmake ..
-  make all -j16
-  make install -j16
-  make runtest -j16
+    mkdir ./build
+    cd ./build
+    cmake ..
+    make all -j16
+    make install -j16
+    make runtest -j16
    ```
 
 
