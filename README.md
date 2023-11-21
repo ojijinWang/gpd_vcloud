@@ -86,7 +86,8 @@ copy the gpd folder into ~/software
    ```
 
 ### 3. Build the package in ROS
-copy the gpd_vcloud ~catkin_ws/src and catkin_make/build
+copy the **gpd_vcloud** int ~catkin_ws/src.
+and catkin_make/build
 
 
 ## 3) References
