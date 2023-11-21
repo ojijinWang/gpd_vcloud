@@ -5,21 +5,27 @@ Remove dangerous grasp: VCloud(visible point cloud) filter implemented with "Gra
 * [License](making)
 
 
-Since the occlusion of sensor is considered, we want to remove the partly invisible grasp from the sensor.
-We provide a filter/method that include incomplete point cloud information.
-The method can be used for a lof of different scene such as complex background. 
-To solve this problem, we introduce a novel technique named ‘visible point-cloud’ – generated using the point cloud and pose (position and orientation) information of the sensor(s) – that helps to eliminate unsafe grasp candidates quickly and efficiently.
+Since the occlusion of the sensor is considered, we want to remove the partly invisible grasp from the sensor.
+We provide a filter/method that includes incomplete point cloud information.
+The method can be used for many different scenes such as complex backgrounds. 
+To solve this problem, we introduce a novel technique named **visible point-cloud(V-cloud)** – generated using the point cloud and pose (position and orientation) information of the sensor(s) – that helps to eliminate unsafe grasp candidates quickly and efficiently.
 
-Of crouse, the same affect can be achieved by using other filters. But I believe the method is more general and more efficient.
+<img src="doc/Fig_visible_region_c3.png" height=170px/>
+<img src="doc/Fig_vcloud.png" height=170px/>
+
+we also define a value named **visibility** to determine the danger of grasp
+<img src="doc/Fig_light_cloud_3_c.png" height=170px/>
+
+Of course, the same effect can be achieved by using other filters. However, the method is more general and more efficient.
 
 The method is implemented with "Grasp Pose Detection in Point Cloud"
 * A standalone filter can be used as well for any grasp detection method ([making])
 
 ## 1) Requirements & Installation
 
-The following instructions have been tested on  **Ubuntu 16.04**, **Ubuntu 18.04** and  **Ubuntu 20.04** .
+The following instructions have been tested on  **Ubuntu 16.04**, **Ubuntu 18.04**, and  **Ubuntu 20.04**.
 
-### 1. Install ROS. the ros installs the requerements for you.
+### 1. Install ROS. The ros installs the requirements for you.
   [PCL 1.9 or newer]
   [Eigen 3.0 or newer]
   [OpenCV 3.3 or newer]
